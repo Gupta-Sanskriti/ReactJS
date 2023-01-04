@@ -20,54 +20,57 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const heading = React.createElement(
-  "h1",
-  { id: "heading ", key: "key1" },
-  "Hello"
-);
-const heading2 = React.createElement(
-  "h2",
-  {
-    name: "sanskriti",
-    age: "23",
-    key: "key2",
-  },
-  "sanskriti"
-);
-
+// Variables
+let str = "sanskriti"
 
 // JSX
 const jsxHeading = (
-  <h1 id="newJSXheading" key="jsxKey">
+  <h1 id="newJSXheading" key={"jsxKey"}>
     Hi this is rendered through JSX
   </h1>
 );
 
-let str = "sanskriti"
-
 const JsxHeading2 = ()=>{
   return (
-    <h2 id="newJSXheading2" key="jsxKey2">
-      Hi this is rendered through JSX 2
-    </h2>
+    <p id="newJSXheading2" key={"jsxKey2"}>
+      Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+    </p>
   );
 }
 
+const HeaderComponent = () =>{
+  return (<h1 id="header" key="head-key">Header</h1>);
+}
+
 // functional component--> 
-const headerComponent = () =>{
+const ContainerComponent = () =>{
   return (
-    <div>
+    <div id="body-container" key="body-cont">
       {/* multiline comment in JSX */}
-      {[<JsxHeading2 key = "hello"></JsxHeading2>, `${str} ${1+2}`] }
-      <h1 key = "sans1">React -- functional component</h1>
-      <h2 key = "sans2">React h2 -- functional component</h2>
+      <JsxHeading2 key = "hello"></JsxHeading2> 
+      <h1 key = {"sans1"}>React -- functional component</h1>
+      <h2 key = {"sans2"}>React h2 -- functional component</h2>
     </div>
   );
 }
 
+const FooterComponent = () =>{
+  return (
+    <p id="footer" key="footer">Footer &#169; </p>
+  )
+}
+// we can call the functional component in few different ways
+// <HeaderComponent/>
+// HeaderComponent()
+// <HeaderComponent></HeaderComponent> 
+
 const container = React.createElement("div", { id: "container" , key:"ds"}, [
-  jsxHeading, <headerComponent></headerComponent> //<headerComponent></headerComponent>
+  <HeaderComponent></HeaderComponent>,
+  jsxHeading, 
+  <ContainerComponent></ContainerComponent>, //<headerComponent></headerComponent>
+  FooterComponent()
 ]);
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(container);
